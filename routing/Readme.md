@@ -5,7 +5,7 @@
 
 ## [Persiapan Lingkungan Praktek](#prepare)
 ### [Instalasi Docker Lokal](#install-docker-kube-local)
-Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubernetes untuk topik Cloud Computing. Langkah instalasi menyesuaikan dengan sistem operasi yang dipakai peserta.
+Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker untuk topik Routing. Langkah instalasi menyesuaikan dengan sistem operasi yang dipakai peserta.
 
 **Linux Ubuntu (Ubuntu/Debian/CentOS/RHEL)**
 - Pasang Docker dengan menjalankan perintah berikut. 
