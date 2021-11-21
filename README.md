@@ -4,7 +4,7 @@ Repositori ini berisi deskripsi dan file konfigurasi yang dipakai dalam Workhsop
 1. [Manajemen Cloud Computing](https://github.com/bhawiyuga/idren-workshop-2021/tree/main/cloud)
 2. Manajemen Identias dan Akses (IAM)
 3. Manajemen WiFi Kampus
-4. Manajemen Routing
+4. [Manajemen Routing](https://github.com/bhawiyuga/idren-workshop-2021/tree/main/routing)
 
 Kontributor :
 
