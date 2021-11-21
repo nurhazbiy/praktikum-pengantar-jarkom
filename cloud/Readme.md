@@ -1,15 +1,17 @@
 # Manajemen Cloud Computing Kampus
-1. Persiapan Lingkungan Praktek 
-    - Instalasi Docker dan Kubernetes Lokal 
+1. [Persiapan Lingkungan Praktek](https://github.com/bhawiyuga/idren-workshop-2021/tree/main/cloud#persiapan-lingkungan-praktek) 
+    - [Instalasi Docker dan Kubernetes Lokal](https://github.com/bhawiyuga/idren-workshop-2021/tree/main/cloud#instalasi-docker-dan-kubernetes-lokal)
+
+2. Manajemen Kontainer dengan Docker
+
+3. Orkestrasi Kontainer dengan Kubernetes
 
 ## [Persiapan Lingkungan Praktek](#prepare)
 ### [Instalasi Docker dan Kubernetes Lokal](#install-docker-kube-local)
 Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubernetes untuk topik Cloud Computing. Langkah instalasi menyesuaikan dengan sistem operasi yang dipakai peserta.
 
 **Linux Ubuntu (Ubuntu/Debian/CentOS/RHEL)**
-- Install Docker
-
-    Jalankan script berikut untuk memasang Docker. 
+- Pasang Docker dengan menjalankan perintah berikut. 
 
     ```bash 
     curl -fsSL https://get.docker.com 
@@ -17,23 +19,23 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
     ```
     Logout atau exit kemudian login kembali ke sistem anda.
 
-- Install ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal
+- Pasang ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal dengan menjalankan perintah berikut.
 
     ```
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
     ```
 
-- Install ```kubectl``` untuk manajemen cluster kubernetes
+- Pasang ```kubectl``` untuk manajemen cluster kubernetes dengan menjalankan perintah berikut.
     ```
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     ```
 
 **MacOS**
 
-- Install Docker Desktop untuk MacOS (https://www.docker.com/products/docker-desktop)
+- Pasang Docker Desktop untuk MacOS (https://www.docker.com/products/docker-desktop)
 
 
-- Install ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal
+- Pasang ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal dengan menjalankan perintah berikut.
 
     ```
     brew install k3d
@@ -45,7 +47,7 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
 
 **Windows**
 
-- Install Docker Desktop untuk Windows (https://www.docker.com/products/docker-desktop)
+- Pasang Docker Desktop untuk Windows (https://www.docker.com/products/docker-desktop)
 
 - Pasang shell terminal Windows untuk memudahkan eksekusi perintah. Beberapa alternatif antara lain : 
 
@@ -53,7 +55,7 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
     
     b. WSL2 (https://docs.microsoft.com/en-us/windows/wsl/install)
 
-- Install ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal
+- Pasang ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal
     
     Jika anda **sudah mengaktifkan Windows Subsystem Linux (WSL) 2**, maka anda dapat memasang ```k3d``` dengan mengeksekusi perintah berikut pada terminal WSL2
     ```bash
