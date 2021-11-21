@@ -8,10 +8,11 @@
 Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker untuk topik Routing. Langkah instalasi menyesuaikan dengan sistem operasi yang dipakai peserta.
 
 **Linux Ubuntu (Ubuntu/Debian/CentOS/RHEL)**
-- Pasang Docker dengan menjalankan perintah berikut. 
+- Pasang Docker dan Docker Compose dengan menjalankan perintah berikut. 
 
     ```bash 
-    curl -fsSL https://get.docker.com 
+    curl -fsSL https://get.docker.com
+    sudo apt install docker-compose
     sudo usermod -aG docker $(whoami)
     ```
     Logout atau exit kemudian login kembali ke sistem anda.
