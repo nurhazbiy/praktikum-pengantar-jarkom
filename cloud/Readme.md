@@ -67,7 +67,7 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
     ```powershell
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     ```
-    Pasang ```k3d``` menggunakan perintah berikut lewat *PowerShell*
+    Pasang ```k3d``` menggunakan perintah berikut lewat *PowerShell* sebagai **Administrator**
     ```powershell
     choco upgrade k3d
     ```
