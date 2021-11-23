@@ -1,6 +1,6 @@
 # Repositori Engineer Workshop IDREN 2021
 
-Repositori ini berisi deskripsi dan file konfigurasi yang dipakai dalam Workhsop IDREN 2021. Terdapat 4 topik yang dapat diikuti peserta :
+Repositori ini berisi deskripsi dan file konfigurasi yang dipakai dalam Workshop IDREN 2021. Terdapat 4 topik yang dapat diikuti peserta :
 1. [Manajemen Cloud Computing](https://github.com/bhawiyuga/idren-workshop-2021/tree/main/cloud)
 2. Manajemen Identitas dan Akses (IAM)
 3. Manajemen WiFi Kampus
