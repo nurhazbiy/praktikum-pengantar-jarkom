@@ -69,7 +69,7 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
     ```
     Pasang ```k3d``` menggunakan perintah berikut lewat *PowerShell*
     ```powershell
-    choco install k3d
+    choco upgrade k3d
     ```
 
 - Sebagai alternatif dari ```k3d``` anda juga dapat memanfaatkan fitur Kubernetes yang terintegrasi dengan Docker Desktop (https://docs.docker.com/desktop/kubernetes/#enable-kubernetes).
