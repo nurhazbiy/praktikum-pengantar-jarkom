@@ -42,7 +42,7 @@ See [the Wiki for this repository](https://github.com/EdwinVW/pitstop/wiki "Pits
 
 Here are the architecture of the solutions.
 
-![Arsitektur](https://github.com/EdwinVW/pitstop/wiki/img/solution-architecture.png)
+![Arsitektur](img/solution-architecture.png)
 
 ### PitStop Web App
 
