@@ -141,5 +141,27 @@ services:
 * Driver volume memungkinkan Anda menyimpan volume di remote host atau penyedia cloud, untuk mengenkripsi konten volume, atau menambahkan fungsionalitas lainnya.
 * Volume baru dapat memiliki kontennya yang telah diisi sebelumnya oleh sebuah wadah.
 * Volume di Docker Desktop memiliki kinerja yang jauh lebih tinggi daripada bind mount dari host Mac dan Windows.
+
+**Contoh command untuk menjalankan penyimpanan menggunaka Bind-mount dan Volume :**
   
+* Bind-mount
+```
+docker run --rm --name postgres-db -e POSTGRES_PASSWORD=password --mount type=bind,source="$pwd",target=/var/lib/postgresql/data -p 2000:5432 -d postgres
+```
+  
+* Volume
+```
+docker run --rm --name postgres-db -e POSTGRES_PASSWORD=password --mount type=volume,source=$HOME/docker/volumes/postgres,target=/var/lib/postgresql/data -p 2000:5432 -d postgres
+```
+  
+**Kumpulan commands pada docker volume**
+
+| Command               | Description                                                                                                              |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------|
+| docker volume create  | Command yang digunakan untuk membuat new volumes.                                                                        |
+| docker volume ls      | Untuk melihat daftar semua volume yang ada pada local Docker host                                                       |
+| docker volume inspect | Menampilkan informasi detail volume. Command ini bisa digunakan untuk melihat lokasi volume di Docker host’s filesystem. |
+| docker volume prune   | Menghapus semua volumes yang tidak digunakan oleh container atau service replica.                                        |
+| docker volume rm      | Menghapus volume yang ditunjuk                                                                                           |
+
 ## Latihan
