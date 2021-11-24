@@ -16,7 +16,39 @@ Dalam dunia rekayasa perangkat lunak, container adalah lingkungan virtual yang i
 
 ## Docker Image
 
-Seperti yang telah dijelaskan sebelumnya, kontainer akan menjalankan sistem operasi berdasarkan image. **Images** dapat kita ambil atau simpan di penyedia **image registry** seperti Docker Hub, Amazon Elastic Container Registry, Google Cloud Registry, dan lain lain. **Image** tersebut berisi dasar-dasar dari sistem operasi dan pustaka-pustaka yang biasa dapat digunakan agar nantinya kode program kita dapat berjalan. Kumpulan pustaka dan dasar-dasar sistem operasi tadi didefinisikan dengan file yang bernama **‘Dockerfile’**. File jenis ini dibuat khusus untuk membuat image dan memiliki sintaks-sintaks khusus yang sudah ditetapkan oleh pihak docker.<br>
+Seperti yang telah dijelaskan sebelumnya, kontainer akan menjalankan sistem operasi berdasarkan image. **Images** terdiri dari beberapa **layer yang ditumpuk** di atas satu sama lain dan direpresentasikan sebagai objek tunggal. Di dalam Images adalah **cut-down sistem operasi (OS)** dan semua file dan dependensi yang diperlukan untuk menjalankan aplikasi. Karena kontainer dimaksudkan untuk menjadi cepat dan ringan, gambar cenderung kecil. Images dapat kita ambil atau simpan di penyedia **image registry** seperti Docker Hub, Amazon Elastic Container Registry, Google Cloud Registry, dan lain lain. 
+**Berikut bagan tabel commands yang sering digunakan pada Docker Image:**
+
+| Command              |                          Description                         |
+|----------------------|:------------------------------------------------------------:|
+| docker image build   |              Build sebuah image dari Dockerfile              |
+| docker image history |                   Menampilkan histori image                  |
+| docker image import  |                 Import image dari sumber luar                |
+| docker image inspect | Menampilkan detail informasi tentang sebuah atau semua image |
+| docker image load    |          Load sebuah image dari tar archive or STDIN         |
+| docker image ls      |                          List images                         |
+| docker image prune   |                    menghapus unused images                   |
+| docker image pull    |        Pull image atau repository dari image registry        |
+| docker image push    |       Push image atau repository menuju image registry       |
+| docker image rm      |               Menghapus sau atau beberapa image              |
+| docker image save    |              Menyimpan satu atau beberapa image              |
+| docker image tag     |  Membuat tag TARGET_IMAGE yang mengacu pada # SOURCE_IMAGE  |
+
+
+## Docker Container
+Docker container adalahadalah alat yang memungkinkan anda untuk menjalankan dan membuat containerizatin aplication menggunakan docker. Dengan memanfaatkan commad-command yantg ada pada tabel dibawah.
+
+**Kumpulan commands pada docker container**
+| Command                  | Description                                                                    |
+|--------------------------|--------------------------------------------------------------------------------|
+| docker container run     | Digunakan untuk memulai container baru                                         |
+| docker container exec    | Menjalankan atau mengelola proses pada running container                       |
+| docker container stop    | Akan menghentikan running container dan mengubah statenya menjadi Exited (0).  |
+| docker container start   | Akan merestart container yang berhenti/stop.                                   |
+| docker container rm      | Akan menghapus container yang berhenti/stop.                                   |
+| docker container inspect | Akan menampilakn detail configurasio dan runtimeinformation tentang container. |
+
+Seperti yang telah dijelaskan pada sebelumnya, kontainer akan menjalankan image yang dapat kita ambil dari penyedia seperti Docker Hub, Amazon Elastic Container Registry, Google Cloud Registry, dan lain lain. Image tersebut berisi dasar-dasar dari sistem operasi dan pustaka-pustaka yang biasa dapat digunakan agar nantinya kode program kita dapat berjalan. Kumpulan pustaka dan dasar-dasar sistem operasi tadi didefinisikan dengan file yang bernama ‘Dockerfile’. File jenis ini dibuat khusus untuk membuat image dan memiliki sintaks-sintaks khusus yang sudah ditetapkan oleh pihak docker.
 
 **Berikut bagan tabel sintaks-sintaks yang sering digunakan pada Dockerfile:**
 
@@ -34,16 +66,14 @@ Seperti yang telah dijelaskan sebelumnya, kontainer akan menjalankan sistem oper
 | ARGS <key>=<value>                            | Mengirimkan variabel dari perintah docker untuk dijalankan pada saat proses build                                                              |
 | EXPOSE <portNumber>/[tcp/udp]                 | Sebagai dokumentasi pada port berapa kontainer menerima koneksi                                                                                |
 
-## Docker Container
-
 ## Kontainerisasi App
 
 **Kontainerisasi aplikasi** adalah metode virtualisasi tingkat OS yang digunakan untuk menerapkan dan menjalankan aplikasi terdistribusi tanpa meluncurkan seluruh mesin virtual (VM) untuk setiap aplikasi. Beberapa aplikasi atau layanan yang terisolasi berjalan pada satu host dan mengakses kernel OS yang sama. Kontainer bekerja pada sistem bare-metal, instans cloud, dan mesin virtual, di seluruh Linux dan memilih Windows dan Mac OS.
 
 Banyak yang mendukung kontainerisasi karena menunjukkan efisiensi untuk memori, CPU, dan penyimpanan dibandingkan dengan virtualisasi tradisional dan hosting aplikasi fisik. Tanpa overhead yang dibutuhkan oleh VM, dimungkinkan untuk mendukung lebih banyak kontainer aplikasi pada infrastruktur yang sama. Portabilitas adalah manfaat lain. Jika OS sama di seluruh sistem, kontainer aplikasi dapat berjalan di sistem apa pun dan di cloud apa pun tanpa memerlukan perubahan kode. Tidak ada variabel guest OS environment atau dependensi library untuk dikelola.
 
-**Cara kerja kontainerisasi aplikasi**
-Wadah aplikasi menyertakan komponen runtime seperti file, environment variables, dan libraries yang diperlukan untuk menjalankan perangkat lunak yang diinginkan. Kontainer aplikasi mengkonsumsi lebih sedikit sumber daya jika dibandingkan dengan penerapan pada VM karena kontainer berbagi sumber daya tanpa sistem operasi penuh untuk mendukung setiap aplikasi. Kumpulan informasi lengkap untuk dieksekusi dalam wadah disebut **image**. Mesin kontainer menyebarkan semua image ini pada host.
+**Cara kerja kontainerisasi aplikasi**<br>
+Kontainer aplikasi menyertakan komponen runtime seperti file, environment variables, dan libraries yang diperlukan untuk menjalankan perangkat lunak yang diinginkan. Kontainer aplikasi mengkonsumsi lebih sedikit sumber daya jika dibandingkan dengan penerapan pada VM karena kontainer berbagi sumber daya tanpa sistem operasi penuh untuk mendukung setiap aplikasi. Kumpulan informasi lengkap untuk dieksekusi dalam wadah disebut **image**. Mesin kontainer menyebarkan semua image ini pada host.
   
 ## Docker Compose
   
@@ -62,6 +92,17 @@ services:
     networks:
       - website-coba
 ```
+  
+**Berikut bagan tabel commands yang sering digunakan pada Docker Compose:**
+| Command                |                                                                                                                         Description                                                                                                                        |
+|------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| docker-compose up      | is the command we use to deploy a Compose app. It expects the Compose file to be called docker-compose.yml or docker-compose.yaml, but you can specify a custom filename with the -f flag. It’s common to start the app in the background with the -d flag. |
+| docker-compose stop    |                                                     will stop all of the containers in a Compose app without deleting them from the system. The app can be easily restarted with dockercompose restart.                                                     |
+| docker-compose rm      |                                                                    will delete a stopped Compose app. It will delete containers and networks, but it will not delete volumes and images.                                                                    |
+| docker-compose restart |                                                                                          will restart a Compose app that has been stopped with docker-compose stop                                                                                          |
+| docker-compose ps      |                                                                   will list each container in the Compose app. It shows current state, the command each one is running, and network ports.                                                                  |
+| docker-compose down    |                                                                         will stop and delete a running Compose app. It deletes containers and networks, but not volumes and images.                                                                         |
+  
 ## Docker Networking
   
 **Docker network** merupakan sebuah opsi menu yang memungkinkan kita untuk melakukan segala hal yang berhubungan dengan manajemen administrasi jaringan, seperti membuat jaringan, menghubungkan, melihat informasi jaringan hingga mendetail sekali. Biasanay digunakan untuk membuat koneksi antar container atau keluar-masuk container.
@@ -76,7 +117,17 @@ services:
 | ipvlan  | Network IPvlan memberi pengguna kendali penuh atas pengalamatan/addressing IPv4 dan IPv6. Driver VLAN dibangun untuk memberikan operator kontrol penuh atas tagging VLAN lapisan 2 dan bahkan routing IPvlan L3 untuk pengguna yang tertarik pada underlay network integration.                                                                                             |
 | macvlan | Jaringan Macvlan memungkinkan untuk menetapkan alamat MAC ke sebuah container, membuatnya muncul sebagai perangkat fisik di jaringan Anda.|
 | none | Untuk menonaktifkan semua jaringan dicontainer ini. Biasanya digunakan bersama dengan driver jaringan khusus. ( tidak tersedia untuk layanan swarm.) |
-
+<br>
+  
+**Kumpulan commands pada docker network**
+| Command                | Description                                                       |
+|------------------------|-------------------------------------------------------------------|
+| docker network ls      | Lists semua networks yang ada pada local Docker host.             |
+| docker network create  | Membuat Docker networks Baru                                      |
+| docker network inspect | Memberikan detail information konfigurasi tentang Docker network. |
+| docker network prune   | Menghapus semua networks yang tidk digunakan pada Docker host.    |
+| docker network rm      | Menghapus sebuah networks yang diinginkan pada Docker host.       |
+  
 ## Docker Volume
 
 <img src="https://cdn-blinux.s3-id-jkt-1.kilatstorage.id/post/leon/types-of-mounts-volume.png" width="400" />
