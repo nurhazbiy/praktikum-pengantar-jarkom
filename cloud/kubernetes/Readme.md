@@ -384,6 +384,8 @@ spec:
 
 ![loadBalancer](img/svc-loadbalancer.png)
 
+LoadBalancer biasanya identik dengan cloud provider. Nantinya, akan diberikan satu IP untuk service tersebut dan ketika kita melakukan akses ke IP, maka nanti akan diarahkan ke deployment atau pod yang tersedia.
+
 ```bash
 kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
@@ -397,18 +399,7 @@ kubectl delete svc nginx-svc
 kubectl delete deploy nginx-deployment
 ```
 
-```bash
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-svc
-spec:
-  type: LoadBalancer
-  selector:
-    app: nginx-deployment
-  ports:
-    - port: 80
-```
+> Implementasi LoadBalancer pada baremetal bisa menggunakan [metallb](https://metallb.universe.tf/) atau [purelb](https://purelb.gitlab.io/).
 
 ### Ingress
 
@@ -418,6 +409,6 @@ Kita bisa mengibaratkan ingress seperti reverse proxy pada konfigurasi nginx di 
 
 ## Extra Miles
 
-Terdapat beberapa resource yang bisa dilihat untuk mempelajari kubernetes lebih lanjut, [path yang disediakan oleh azure](https://azure.microsoft.com/en-us/resources/kubernetes-learning-path/) dapat menjadi pilihan awal untuk dibaca. [Dokumentasi kubernetes](https://kubernetes.io/docs/concepts/overview/components/) juga dapat menjadi alternatif bagi yang lebih prefer dengan membaca dokumentasi. Terdapat pula tutorial dengan hands-on lab di [katacoda](https://www.katacoda.com/). Indonesia juga memiliki komunitas kubernetes yang aktif di [telegram](https://t.me/kubernetesindonesia). 
+Terdapat beberapa resource yang bisa dilihat untuk mempelajari kubernetes lebih lanjut, [path yang disediakan oleh azure](https://azure.microsoft.com/en-us/resources/kubernetes-learning-path/) dapat menjadi pilihan awal untuk dibaca. [Dokumentasi kubernetes](https://kubernetes.io/docs/concepts/overview/components/) juga dapat menjadi alternatif bagi yang lebih prefer dengan membaca dokumentasi. Terdapat pula tutorial dengan hands-on lab di [katacoda](https://www.katacoda.com/). Indonesia juga memiliki komunitas kubernetes yang aktif di [telegram](https://t.me/kubernetesindonesia).
 
-Selamat Belajar.
+> Selamat Belajar 😉👍
