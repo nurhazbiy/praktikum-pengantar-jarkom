@@ -37,7 +37,6 @@ See [the Wiki for this repository](https://github.com/EdwinVW/pitstop/wiki "Pits
     - [Access the dashboard](#access-the-dashboard)
   - [Stopping the application](#stopping-the-application)
 
-
 ## Architecture
 
 Here are the architecture of the solutions.

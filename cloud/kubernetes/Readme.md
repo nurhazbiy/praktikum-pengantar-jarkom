@@ -1,5 +1,7 @@
 # Kubernetes
+
 ## Daftar Konten Pelatihan
+
 1. Kubernetes & Container Orchestration
 2. Komponen Kubernetes
     - Control Plane
@@ -145,7 +147,7 @@ k3d memungkinkan kita untuk membangun kluster Kubernetes berbasis k3s baik singl
 
 Untuk membuat kluster k3d, kita dapat menjalankan perintah berikut
 
-```
+```bash
 k3d cluster create -p port_mapping -a jumlah_node
 ```
 
