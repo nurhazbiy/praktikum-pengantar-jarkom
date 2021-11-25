@@ -322,12 +322,16 @@ kubectl expose pod nama-pod --port=80
 
 kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
-kubectl expose deploy nginx-deployment --port=80
+kubectl expose deploy nginx-deployment --name=nginx-svc --port=80
 
 # Proxy
 kubectl proxy --port=8080 --kubeconfig=/pat/to/kubeconfig.yaml
 
 # akses di: http://localhost:8080/api/v1/proxy/namespaces/default/services/nginx-deployment/
+
+# Delete service dan deployment
+kubectl delete svc nginx-svc
+kubectl delete deploy nginx-deployment
 ```
 
 > Perlu diperhatikan, beberapa distribusi k8s mungkin tidak memberikan support untuk menjalankan proxy.
@@ -347,10 +351,14 @@ kubectl expose pod nama-pod --port=80 --type=NodePort
 
 kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
-kubectl expose deploy nginx-deployment --port=80 --type=NodePort
+kubectl expose deploy nginx-deployment --name=nginx-svc --port=80 --type=NodePort
 
 # Mendapatkan port dan akses langsung via IP
 kubectl get svc
+
+# Delete service dan deployment
+kubectl delete svc nginx-svc
+kubectl delete deploy nginx-deployment
 ```
 
 Kita juga dapat mendefinisikan service menggunakan file yaml.
@@ -377,6 +385,19 @@ spec:
 ![loadBalancer](img/svc-loadbalancer.png)
 
 ```bash
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+kubectl expose deploy nginx-deployment --name=nginx-svc --type=LoadBalancer
+
+# Mendapatkan port dan akses langsung via IP
+kubectl get svc
+
+# Delete service dan deployment
+kubectl delete svc nginx-svc
+kubectl delete deploy nginx-deployment
+```
+
+```bash
 apiVersion: v1
 kind: Service
 metadata:
@@ -392,3 +413,11 @@ spec:
 ### Ingress
 
 ![ingress](img/ingress.png)
+
+Kita bisa mengibaratkan ingress seperti reverse proxy pada konfigurasi nginx di server biasa.
+
+## Extra Miles
+
+Terdapat beberapa resource yang bisa dilihat untuk mempelajari kubernetes lebih lanjut, [path yang disediakan oleh azure](https://azure.microsoft.com/en-us/resources/kubernetes-learning-path/) dapat menjadi pilihan awal untuk dibaca. [Dokumentasi kubernetes](https://kubernetes.io/docs/concepts/overview/components/) juga dapat menjadi alternatif bagi yang lebih prefer dengan membaca dokumentasi. Terdapat pula tutorial dengan hands-on lab di [katacoda](https://www.katacoda.com/). Indonesia juga memiliki komunitas kubernetes yang aktif di [telegram](https://t.me/kubernetesindonesia). 
+
+Selamat Belajar.
