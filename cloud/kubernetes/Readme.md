@@ -226,20 +226,27 @@ spec:
 ```
 
 Beberapa perintah penting untuk manajemen pod.
+
 - Menjalankan deployment
-    ```
+
+    ```bash
     kubectl apply -f deployment-manifest.yml
     ```
+
 - Menghapus deployment
-    ```
+
+    ```bash
     kubectl delete -f deployment-manifest.yml
     ```
 - Menampilkan daftar deployment
-    ```
+
+    ```bash
     kubectl get deploy
     ```
+
 - Melihat detail informasi sebuah deployment
-    ```
+
+    ```bash
     kubectl describe deploy deploy-name
     ```
 
@@ -266,32 +273,122 @@ spec:
 ```
 
 Beberapa perintah penting untuk manajemen pod.
+
 - Menjalankan service
-    ```
+
+    ```bash
     kubectl apply -f service-manifest.yml
     ```
+
 - Menghapus service
-    ```
+
+    ```bash
     kubectl delete -f service-manifest.yml
     ```
+
 - Menampilkan daftar service
-    ```
+
+    ```bash
     kubectl get service
     ```
+
 - Melihat detail informasi sebuah service
-    ```
+
+    ```bash
     kubectl describe service service-name
     ```
 
 ## Ekspos Layanan Pod
+
 Setiap Pod memiliki alamat IP lokal yang hanya bisa diakses oleh kontainer yang berada pada kluster yang sama. Agar sebuah layanan yang di-deploy dalam pod dapat diakses dari luar kluster, maka diperlukan mekanisme ekspos layanan menggunakan komponen **Service**. 
 
 Terdapat beberapa strategi untuk ekspos layanan, antara lain : Cluster IP, Ingress, Node Port dan Load Balancer.
 
 ### Cluster IP
 
+![clusterIP](img/svc-clusterIP.png)
+
+Ketika menggunakan service dengan tipe cluster IP, normalnya kita tidak bisa mengaksesnya secara langsung. Hal ini disebabkan dikarenakan pada service tersebut akan diberkan IP lokal dari cluster tersebut dan tidak dapat diakses sama sekali dari luar cluster. Namun, kita bisa menggunakan `kube-proxy` untuk mengaksesnya. Tentu saja, hal ini tidak direkomendasikan untuk lingkungan produksi.
+
+Contoh perintah untuk melakukan expose pod/deployment dengan tipe clusterIP adalah,
+
+```bash
+# Expose pod
+
+kubectl expose pod nama-pod --port=80
+#                             ^ pod yang terdefinisi di file yaml
+
+# Expose deployment
+
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+kubectl expose deploy nginx-deployment --port=80
+
+# Proxy
+kubectl proxy --port=8080 --kubeconfig=/pat/to/kubeconfig.yaml
+
+# akses di: http://localhost:8080/api/v1/proxy/namespaces/default/services/nginx-deployment/
+```
+
+> Perlu diperhatikan, beberapa distribusi k8s mungkin tidak memberikan support untuk menjalankan proxy.
+
 ### Node Port
+
+![nodePort](img/svc-nodeport.png)
+
+Tipe *service* NodePort merupakan jalan paling mudah (primitif) untuk mendapatkan trafik external langsung ke aplikasi yang kita taruh di cluster. NodePort akan membuka suatu port di semua Node (VM atau server), nantinya trafik yang dikirim ke port ini akan diteruskan (forward) ke service NodePort dan diarahkan ke aplikasi (pod).
+
+```bash
+# Expose pod
+
+kubectl expose pod nama-pod --port=80 --type=NodePort
+
+# Expose deployment
+
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+kubectl expose deploy nginx-deployment --port=80 --type=NodePort
+
+# Mendapatkan port dan akses langsung via IP
+kubectl get svc
+```
+
+Kita juga dapat mendefinisikan service menggunakan file yaml.
+
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  type: NodePort
+  selector:
+    app: nginx-deployment
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 80
+      # Optional field
+      # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+      nodePort: 30100
+```
 
 ### Load Balancer
 
+![loadBalancer](img/svc-loadbalancer.png)
 
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-deployment
+  ports:
+    - port: 80
+```
+
+### Ingress
+
+![ingress](img/ingress.png)
