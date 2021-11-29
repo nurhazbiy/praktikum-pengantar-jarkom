@@ -11,23 +11,29 @@
 Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubernetes untuk topik Cloud Computing. Langkah instalasi menyesuaikan dengan sistem operasi yang dipakai peserta. Namun demikian, peserta **disarankan untuk menggunakan sistem operasi berbasis Unix (Linux/MacOS/Windows Subsystem Linux 2)**.
 
 **Linux Ubuntu (Ubuntu/Debian/CentOS/RHEL)**
+
 - Pasang Docker dengan menjalankan perintah berikut. 
 
     ```bash 
     curl -fsSL https://get.docker.com 
     sudo usermod -aG docker $(whoami)
     ```
+
     Logout atau exit kemudian login kembali ke sistem anda.
 
 - Pasang ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal dengan menjalankan perintah berikut.
 
-    ```
+    ```bash
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
     ```
 
 - Pasang ```kubectl``` untuk manajemen cluster kubernetes dengan menjalankan perintah berikut.
-    ```
+
+    ```bash
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     ```
 
 **MacOS**
@@ -37,7 +43,7 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
 
 - Pasang ```k3d``` untuk membangun cluster Kubernetes pada lingkungan lokal dengan menjalankan perintah berikut.
 
-    ```
+    ```bash
     brew install k3d
     ```
 
@@ -67,7 +73,9 @@ Bagian ini berisi langkah-langkah persiapan lingkungan praktek Docker dan Kubern
     ```powershell
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     ```
+
     Pasang ```k3d``` menggunakan perintah berikut lewat *PowerShell* sebagai **Administrator**
+
     ```powershell
     choco upgrade k3d
     ```

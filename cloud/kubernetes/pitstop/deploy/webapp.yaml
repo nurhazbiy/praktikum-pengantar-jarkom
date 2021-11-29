@@ -39,7 +39,7 @@ metadata:
   name: webapp
   namespace: pitstop
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - name: "7000"
     port: 7000
