@@ -10,7 +10,9 @@ Kontributor :
 
 - Adhitya Bhawiyuga
 - Achmad Basuki
-- Alan Balantimuhe 
+- Alan Balantimuhe
+- Mohammad Zulfikar
+- Rafi Fauzan Fathin
 
 
 
