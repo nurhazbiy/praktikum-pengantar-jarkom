@@ -1,8 +1,0 @@
-FROM node:latest
-
-WORKDIR /server
-
-ADD init.sh /
-
-CMD sh -c /init.sh
-
